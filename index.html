@@ -1,126 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Sihirli Şato | Zeynep Duru</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Asaf | Okula Başlıyor</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#17102f;color:#fff}
-button{font:inherit;cursor:pointer;border:0}.app{min-height:100vh;background:radial-gradient(circle at 50% 15%,#6843a8,#241548 45%,#100a24)}
-header{text-align:center;padding:28px 16px 18px}header .castle{font-size:55px}h1{margin:5px 0;font-size:clamp(28px,7vw,52px)}header p{opacity:.85}
-.menu{max-width:900px;margin:10px auto 25px;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.menu button{min-height:155px;border-radius:25px;color:white;background:linear-gradient(145deg,#39226a,#60399b);box-shadow:0 12px 30px #0005;border:1px solid #ffffff22}
-.menu .icon{font-size:50px}.menu b{display:block;font-size:21px;margin:8px}.menu small{opacity:.7}
-.screen{display:none;max-width:900px;margin:auto;padding:0 16px 40px}.screen.show{display:block}.box{background:#fff;color:#30213f;border-radius:25px;padding:24px;box-shadow:0 12px 30px #0006}.back{background:#eee7ff;color:#5c3990;padding:10px 15px;border-radius:12px;font-weight:bold;margin-bottom:18px}
-h2{color:#6a3bb6;margin-top:0}.heroGem{text-align:center;font-size:90px;animation:glow 2s infinite}@keyframes glow{50%{transform:scale(1.08);filter:drop-shadow(0 0 20px #f5ca55)}}
-.controls{text-align:center}.primary{background:#ed4d98;color:#fff;padding:14px 22px;border-radius:14px;font-weight:bold}.secondary{background:#6a42bd;color:#fff;padding:14px 22px;border-radius:14px;font-weight:bold}
-.progress{height:10px;background:#ddd;border-radius:20px;margin:20px 0;overflow:hidden}.progress div{height:100%;width:0;background:#ed4d98;transition:.3s}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.game{background:#faf7ff;border:2px solid #eee2ff;border-radius:18px;padding:18px}.game button{background:#ed4d98;color:#fff;padding:10px 13px;border-radius:10px;margin:3px}.msg{font-weight:bold;color:#6a42bd;min-height:22px}
-.question{margin:18px 0;padding:18px;border-radius:17px;background:#faf7ff}.answer{display:block;width:100%;text-align:left;padding:13px;margin:8px 0;background:#eee7ff;color:#3f2a5b;border-radius:11px}.answer.correct{background:#d9f5df}.answer.wrong{background:#ffe0e0}
-.certificate{background:#fffdf5;color:#33243f;position:relative;border:12px solid #d5a844;padding:45px 30px;text-align:center;border-radius:8px;overflow:hidden}.certificate:before{content:"✦";position:absolute;left:25px;top:10px;font-size:80px;color:#d5a84455}.certificate:after{content:"✦";position:absolute;right:25px;bottom:-15px;font-size:100px;color:#d5a84455}.certLogo{font-weight:bold;letter-spacing:3px;color:#9a7623}.certTitle{font-size:45px;color:#7042bd;font-weight:900;margin:15px 0}.certName{font-size:36px;color:#e34b91;font-weight:bold;border-bottom:2px solid #b7964b;display:inline-block;min-width:60%;padding:8px}.certInput{padding:13px;border:2px solid #ddd0ef;border-radius:10px;width:100%;max-width:500px;font-size:17px;margin:10px 0}
-footer{text-align:center;opacity:.6;padding:25px}
-@media(max-width:650px){.menu{grid-template-columns:1fr}.games{grid-template-columns:1fr}.certificate{padding:35px 15px}.certTitle{font-size:34px}.certName{font-size:28px;min-width:90%}}
-@media print{body{background:#fff}.app>header,.menu,.screen:not(#certScreen),footer,#certScreen>.back,#certScreen>h2,#certScreen>.intro,#certScreen>form{display:none!important}.screen#certScreen{display:block!important;padding:0}.box{box-shadow:none;padding:0}.certificate{height:100vh;border:14px solid #d5a844}}
+*{box-sizing:border-box}
+:root{--blue:#4b78d8;--blue2:#eef4ff;--yellow:#ffd85a;--green:#68bd88;--pink:#ff9db8;--ink:#273142;--muted:#707b8c;--border:#e3e8f0}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;background:#fff;min-height:100vh;overflow-x:hidden}
+.decor{position:fixed;z-index:0;pointer-events:none;opacity:.82;user-select:none}
+.decor span{position:absolute;filter:drop-shadow(0 5px 5px rgba(40,60,90,.08))}
+.d1{left:18px;top:115px;font-size:52px;transform:rotate(-12deg)}
+.d2{right:20px;top:145px;font-size:55px;transform:rotate(10deg)}
+.d3{left:28px;bottom:55px;font-size:48px;transform:rotate(8deg)}
+.d4{right:25px;bottom:35px;font-size:52px;transform:rotate(-10deg)}
+.d5{left:7%;top:42%;font-size:32px;opacity:.5;transform:rotate(15deg)}
+.d6{right:8%;top:53%;font-size:34px;opacity:.5;transform:rotate(-13deg)}
+.wrap{width:min(1080px,calc(100% - 32px));margin:0 auto;position:relative;z-index:1;padding:28px 0 50px}
+.header{background:#fff;border:2px solid var(--border);border-radius:28px;padding:30px 28px 24px;text-align:center;box-shadow:0 12px 30px rgba(48,70,100,.08)}
+.logo{font-size:44px;line-height:1;margin-bottom:10px}
+h1{font-size:38px;margin:0;color:#315a9e;letter-spacing:-.5px}
+.tagline{margin:10px 0 0;color:var(--muted);font-size:16px}
+.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.nav button{border:2px solid var(--border);background:#fff;border-radius:20px;padding:16px 10px;cursor:pointer;color:#315a9e;font-weight:800;font-size:16px;transition:.18s;min-height:92px}
+.nav button:hover{transform:translateY(-2px);border-color:#9db8eb;background:#f7faff}
+.nav button.active{background:var(--blue2);border-color:#82a6e8;box-shadow:0 6px 16px rgba(75,120,216,.12)}
+.nav .ico{display:block;font-size:34px;margin-bottom:7px}
+.nav small{display:block;color:#8792a3;font-weight:600;margin-top:4px}
+.content{margin-top:20px}
+.panel{display:none;background:#fff;border:2px solid var(--border);border-radius:25px;padding:28px;box-shadow:0 12px 30px rgba(48,70,100,.07)}
+.panel.active{display:block}
+.panel h2{margin:0 0 8px;color:#315a9e;font-size:28px}
+.panel p{line-height:1.65}
+.audio{background:#f6f9ff;border:1px solid #dce7fb;border-radius:18px;padding:18px;margin-top:16px}
+audio{width:100%}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:20px}
+.game-card{border:2px solid var(--border);border-radius:18px;padding:18px;background:#fff}
+.game-card h3{margin:0 0 7px;color:#315a9e}
+.game-card button,.reset{border:0;border-radius:12px;padding:11px 16px;background:#eaf1ff;color:#315a9e;font-weight:800;cursor:pointer;margin-top:8px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.match-side{display:grid;gap:11px}
+.match-btn{width:100%;border:2px solid var(--border);background:#fff;border-radius:15px;padding:15px;min-height:62px;cursor:pointer;font-weight:800;color:var(--ink)}
+.match-btn:hover{border-color:#9db8eb;background:#f7faff}
+.match-btn.selected{border-color:var(--blue);background:#eef4ff}
+.match-btn.correct{border-color:var(--green);background:#ecfaef}
+.match-btn.wrong{border-color:#ee7b7b;background:#fff0f0}
+.match-msg{min-height:28px;margin-top:14px;font-weight:800}
+.certificate{text-align:center;border:7px double #e1b940;background:#fffdf2;border-radius:15px;padding:35px}
+.certificate h2{color:#9a7410}
+@media(max-width:760px){.wrap{width:min(100% - 18px,680px);padding-top:10px}h1{font-size:30px}.nav{grid-template-columns:1fr 1fr}.game-grid,.match-grid{grid-template-columns:1fr}.decor span{font-size:34px}}
+@media print{.nav,.no-print{display:none!important}body{background:#fff}.panel{box-shadow:none}}
 
-.gameHead{display:flex;justify-content:space-between;align-items:center;gap:20px}.gameHead h2{margin-bottom:5px}.gameHead p{margin-top:0;color:#6f6380}.scoreOrb{min-width:95px;height:95px;border-radius:50%;background:radial-gradient(circle,#fff5b9,#f5ca55 45%,#c88d28);color:#56320b;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 30px #f5ca5588}.scoreOrb span{font-size:30px;font-weight:900}.scoreOrb small{font-weight:800}.questProgress{height:12px;background:#eadff8;border-radius:20px;overflow:hidden;margin-top:15px}.questProgress div{height:100%;width:0;background:linear-gradient(90deg,#ed4d98,#f5ca55);transition:.4s}.questText{text-align:right;font-weight:bold;color:#7651a8}.game{position:relative;overflow:hidden}.gameBadge{display:inline-block;font-size:11px;font-weight:900;letter-spacing:1px;color:#fff;background:#7042bd;padding:5px 9px;border-radius:20px}.featured{background:linear-gradient(145deg,#fff8e8,#faf7ff)}.choices{display:flex;flex-wrap:wrap;gap:7px}.choices button{background:#ed4d98;color:#fff;padding:11px 13px;border-radius:11px}.choices button:hover,.spellRow button:hover{transform:translateY(-2px)}.memoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.memoryCard{height:62px;border-radius:12px;background:#7042bd;color:#fff;font-size:25px}.memoryCard.open{background:#f5ca55;color:#56320b}.spellRow{display:flex;justify-content:center;gap:8px;margin:8px 0}.spellRow button{width:52px;height:52px;border-radius:14px;background:#eee7ff;font-size:23px}.spellRow button.active{background:#f5ca55;transform:scale(1.08)}.smallBtn{padding:9px 13px;margin-top:8px}.magicReward{margin-top:20px;background:linear-gradient(90deg,#fff8e8,#f5efff);border:2px solid #ead6a4;border-radius:18px;padding:15px;display:flex;align-items:center;gap:15px;color:#4a365d}.magicReward>span{font-size:40px}.magicReward p{margin:4px 0 0;opacity:.75}.locked{opacity:.65}.certStars{font-size:28px;color:#d5a844;letter-spacing:15px}.certSub{font-size:18px}.certValues{font-weight:bold;color:#7042bd;margin:20px 0}.certFooter{display:flex;justify-content:space-around;margin-top:35px}.certSeal{position:absolute;right:35px;top:30px;width:95px;height:95px;border:4px solid #d5a844;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9a7623;font-size:27px;transform:rotate(8deg)}.certSeal small{font-size:8px;font-weight:900;line-height:1.1}@media(max-width:650px){.gameHead{align-items:flex-start}.scoreOrb{min-width:75px;height:75px}.scoreOrb span{font-size:24px}.memoryGrid{grid-template-columns:repeat(4,1fr)}.certFooter{display:block}.certFooter span{display:block;margin:10px}.certSeal{position:relative;right:auto;top:auto;margin:15px auto}.certStars{letter-spacing:5px}}
-@media print{ @page{size:A4 landscape;margin:0} body{background:#fff}.app>header,.menu,.screen:not(#certScreen),footer,#certScreen>.back,#certScreen>h2,#certScreen>.intro,#certScreen>form,#certScreen>.secondary{display:none!important}.screen#certScreen{display:block!important;padding:0}.screen#certScreen .box{box-shadow:none;padding:0}.certificate{width:100vw;height:100vh;border:14px solid #d5a844;border-radius:0;margin:0!important;padding:35px}.certSeal{position:absolute;right:35px;top:30px}}
+.header{position:relative}
+.brand-logo{
+  position:absolute;right:24px;top:20px;width:190px;height:auto;
+  object-fit:contain;
+}
+@media(max-width:760px){
+  .brand-logo{position:static;display:block;width:145px;margin:0 auto 12px}
+}
+.question-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}
+.question-card{
+  border:2px solid var(--border);border-radius:18px;padding:18px;background:#fff;
+}
+.question-card h3{margin:0 0 13px;color:#315a9e;font-size:18px;line-height:1.35}
+.answers{display:grid;gap:8px}
+.answer{
+  border:2px solid var(--border);background:#fff;border-radius:12px;
+  padding:11px 13px;text-align:left;cursor:pointer;font-weight:700;
+}
+.answer:hover{background:#f7faff;border-color:#9db8eb}
+.answer.correct{background:#ecfaef;border-color:var(--green)}
+.answer.wrong{background:#fff0f0;border-color:#ee7b7b}
+.question-feedback{min-height:22px;margin-top:9px;font-weight:800;font-size:14px}
+.score-box{
+  margin-top:18px;padding:14px 16px;border-radius:14px;background:#eef4ff;
+  color:#315a9e;font-weight:800;text-align:center;
+}
+@media(max-width:760px){.question-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
-<div class="app">
-<header>
-<div class="castle">🏰✨</div>
-<h1>Zeynep Duru'nun<br>Sihir Taşı Macerası</h1>
-<p>Hikâyeyi dinle • Oyunları oyna • Macerayı tamamla • Sertifikanı kazan</p>
+<div class="decor" aria-hidden="true">
+  <span class="d1">📓</span><span class="d2">✏️</span><span class="d3">📚</span>
+  <span class="d4">🖍️</span><span class="d5">📐</span><span class="d6">🖇️</span>
+</div>
+
+<div class="wrap">
+<header class="header">
+  <img class="brand-logo" src="maybes-education-logo.png" alt="Maybes Education">
+  <div class="logo">🎒 ✏️ 📚</div>
+  <h1>Ali Asaf'ın Okul Macerası</h1>
+  <p class="tagline">Hikâyeyi dinle • Oyunları oyna • Eşleştir • Sertifikanı kazan</p>
+  <nav class="nav">
+    <button class="tab active" data-target="story"><span class="ico">🎧</span>Hikâyeyi Dinle<small>Masalı dinle</small></button>
+    <button class="tab" data-target="games"><span class="ico">🎮</span>Okul Oyunları<small>4 eğlenceli görev</small></button>
+    <button class="tab" data-target="matching"><span class="ico">🧩</span>Eşleştirme Oyunu<small>Doğru eşini bul</small></button>
+    <button class="tab" data-target="certificate"><span class="ico">🏆</span>Okul Kaşifi<small>Sertifikanı kazan</small></button>
+  </nav>
 </header>
 
-<nav class="menu">
-<button onclick="showScreen('listen')"><span class="icon">🎧</span><b>Hikâyeyi Dinle</b><small>Masalsı anlatım</small></button>
-<button onclick="showScreen('games')"><span class="icon">🧩</span><b>Sihirli Oyunlar</b><small>4 büyülü görev</small></button>
-<button onclick="showScreen('quiz')"><span class="icon">❓</span><b>Macerayı Hatırla</b><small>Soruları çöz</small></button>
-<button id="certMenu" class="locked" onclick="showCertificate()"><span class="icon">🏆</span><b>Sihirli Kaşif</b><small id="certStatus">Görevleri tamamla</small></button>
-</nav>
+<main class="content">
+<section id="story" class="panel active">
+  <h2>🎧 Hikâyeyi Dinle</h2>
+  <p>Ali Asaf'ın okulun ilk günündeki macerasını birlikte dinleyelim!</p>
+  <div class="audio"><audio controls preload="metadata" src="ali-asaf-hikaye.mp3"></audio></div>
+</section>
 
-<section id="listen" class="screen"><div class="box">
-<button class="back" onclick="home()">← Ana Sayfa</button><h2>🎧 Hikâyeyi Dinle</h2>
-<div style="text-align:center"><div class="heroGem">🔮</div><h3>Sihir Taşı Macerası</h3></div>
-<div class="progress"><div id="audioProgress"></div></div>
-<div class="controls">
-<button class="primary" onclick="playStory()">▶ Hikâyeyi Başlat</button>
-<button class="secondary" onclick="pauseStory()">Ⅱ Duraklat</button>
-<button class="secondary" onclick="stopStory()">■ Baştan</button>
-</div>
-<div style="margin:18px auto;max-width:520px;text-align:center">
-<label style="font-weight:bold;color:#6a3bb6">🔊 Ses Seviyesi</label>
-<input id="volume" type="range" min="0" max="1" step="0.01" value="0.9" style="width:100%" oninput="setVolume(this.value)">
-</div>
-<audio id="storyAudio" preload="metadata">
-  <source src="sihir-tasi-macerasi.mp3" type="audio/mpeg">
-</audio>
-<p style="color:#766b82">🎙️ Final seslendirme: yavaş, sıcak masal anlatımı + hafif fantastik fon müziği + sahne atmosferleri. Tek parça olarak oynatılır.</p>
-</div></section>
+<section id="games" class="panel">
+  <h2>🎮 Okul Oyunları</h2>
+  <p>Hikâyeyi ne kadar dikkatli dinlediğini görelim! Doğru cevabı seç. Yanlış yaparsan tekrar deneyebilirsin. 😊</p>
 
-<section id="games" class="screen"><div class="box gameBox">
-<button class="back" onclick="home()">← Ana Sayfa</button>
-<div class="gameHead"><div><h2>🧩 Sihirli Oyunlar</h2><p>Şatonun 4 büyülü görevini tamamla ve sihir puanlarını topla!</p></div><div class="scoreOrb"><span id="points">0</span><small>⭐ puan</small></div></div>
-<div class="questProgress"><div id="questBar"></div></div><p class="questText" id="questText">0 / 4 görev tamamlandı</p>
-<div class="games">
-<div class="game featured"><div class="gameBadge">GÖREV 1</div><h3>🔮 Sihir Taşı'nı Bul</h3><p>Üç taştan hangisi gerçek Sihir Taşı?</p><div class="choices"><button onclick="gemGame(this,0)">💎</button><button onclick="gemGame(this,1)">🪨</button><button onclick="gemGame(this,2)">🪨</button></div><div class="msg"></div></div>
-<div class="game"><div class="gameBadge">GÖREV 2</div><h3>🗺️ Haritanın İzinde</h3><p>Parlayan izler seni hangi yola götürüyor?</p><div class="choices"><button onclick="pathGame(this,true)">✨ Parlayan Yol</button><button onclick="pathGame(this,false)">🌫️ Sisli Yol</button></div><div class="msg"></div></div>
-<div class="game"><div class="gameBadge">GÖREV 3</div><h3>🗝️ Gizli Oda</h3><p>Gizli odayı açan nesneyi seç.</p><div class="choices"><button onclick="objGame(this,true)">🗝️ Anahtar</button><button onclick="objGame(this,false)">🍕 Pizza</button><button onclick="objGame(this,false)">🎈 Balon</button></div><div class="msg"></div></div>
-<div class="game memoryGame"><div class="gameBadge">GÖREV 4</div><h3>🧠 Büyülü Hafıza</h3><p>Aynı iki sihirli sembolü bul.</p><div class="memoryGrid" id="memoryGrid"></div><div class="msg" id="memoryMsg"></div></div>
-</div>
-<div class="magicReward"><span>🏆</span><div><b>Sertifika hedefi</b><p>4 görevi + macera sorularını tamamla. Sihirli Kaşif sertifikan açılacak!</p></div></div>
-</div></section>
+  <div class="score-box" id="scoreBox">⭐ Doğru cevap: 0 / 5</div>
 
-<section id="quiz" class="screen"><div class="box">
-<button class="back" onclick="home()">← Ana Sayfa</button><h2>❓ Macerayı Hatırla</h2>
-<div class="question"><b>1. Zeynep Duru ve arkadaşları neyi arıyordu?</b><button class="answer" onclick="quiz(this,true)">🔮 Sihir Taşı'nı</button><button class="answer" onclick="quiz(this,false)">👑 Bir tacı</button></div>
-<div class="question"><b>2. Zeynep'in arkadaşları kimlerdi?</b><button class="answer" onclick="quiz(this,true)">👧 Kübra ve Nurefşan</button><button class="answer" onclick="quiz(this,false)">🐰 İki tavşan</button></div>
-<div class="question"><b>3. Hikâyenin öne çıkan değeri nedir?</b><button class="answer" onclick="quiz(this,true)">❤️ Dostluk ve birlikte hareket etmek</button><button class="answer" onclick="quiz(this,false)">🏁 Yarışmak</button></div>
-<p id="quizScore" style="font-size:20px;font-weight:bold;color:#7042bd">0 / 3</p>
-</div></section>
+  <div class="question-grid">
+    <div class="question-card">
+      <h3>1️⃣ Ali Asaf okulun ilk günü nasıl hissediyordu?</h3>
+      <div class="answers">
+        <button class="answer" data-q="1" data-correct="true">😃 Çok heyecanlıydı.</button>
+        <button class="answer" data-q="1">😴 Çok uykuluydu.</button>
+        <button class="answer" data-q="1">😠 Çok kızgındı.</button>
+      </div>
+      <div class="question-feedback" id="feedback1"></div>
+    </div>
 
-<section id="certScreen" class="screen"><div class="box">
-<button class="back" onclick="home()">← Ana Sayfa</button><h2>🏆 Sihirli Kaşif Sertifikası</h2>
-<p class="intro">Macerayı tamamladın! Adını yaz ve yatay A4 sertifikanı oluştur.</p>
-<form onsubmit="makeCert(event)"><input class="certInput" id="studentName" placeholder="Çocuğun adı soyadı" required><br><button class="primary">Sertifikayı Oluştur</button></form>
-<div class="certificate" id="certificate" style="margin-top:20px">
-<div class="certStars">✦ ✧ ✦</div><div class="certLogo">MAYBES EDUCATION • SİHİRLİ ŞATO</div><div style="font-size:55px">🏰 🔮 ✨</div>
-<div class="certTitle">SİHİRLİ KAŞİF</div><p class="certSub">Bu özel sertifika</p><div class="certName" id="certName">Ad Soyad</div>
-<p><b>Zeynep Duru'nun Sihir Taşı Macerası</b> dijital macerasını tamamlayan<br>cesur, meraklı ve dikkatli kaşife verilmiştir.</p>
-<div class="certValues">✨ Merak et &nbsp; • &nbsp; 🤝 Birlikte başar &nbsp; • &nbsp; 💫 Hayal et</div>
-<p class="certFooter"><span>Tarih: __________________</span><span>Öğretmen: __________________</span></p>
-<div class="certSeal">🏆<small>MACERA<br>TAMAMLANDI</small></div>
-</div>
-<button class="secondary" style="margin-top:18px" onclick="window.print()">🖨 Yatay A4 Yazdır / PDF Kaydet</button>
-</div></section>
-<footer>✨ Sihirli Şato dijital macerası ✨</footer>
+    <div class="question-card">
+      <h3>2️⃣ Ali Asaf kahvaltıda hangisini yedi?</h3>
+      <div class="answers">
+        <button class="answer" data-q="2">🍕 Pizza ve meyve</button>
+        <button class="answer" data-q="2" data-correct="true">🍳 Yumurta, peynir, zeytin ve ekmek</button>
+        <button class="answer" data-q="2">🥣 Sadece süt</button>
+      </div>
+      <div class="question-feedback" id="feedback2"></div>
+    </div>
+
+    <div class="question-card">
+      <h3>3️⃣ Ali Asaf sınıfa girdiğinde tahtada neler vardı?</h3>
+      <div class="answers">
+        <button class="answer" data-q="3">🚗 Arabalar ve yollar</button>
+        <button class="answer" data-q="3">🌙 Ay ve yıldızlar</button>
+        <button class="answer" data-q="3" data-correct="true">☀️ Güneş, bulutlar ve renkli şekiller</button>
+      </div>
+      <div class="question-feedback" id="feedback3"></div>
+    </div>
+
+    <div class="question-card">
+      <h3>4️⃣ Ali Asaf ilk derste kendi adındaki hangi harfi buldu?</h3>
+      <div class="answers">
+        <button class="answer" data-q="4" data-correct="true">🔤 A harfi</button>
+        <button class="answer" data-q="4">🔤 B harfi</button>
+        <button class="answer" data-q="4">🔤 M harfi</button>
+      </div>
+      <div class="question-feedback" id="feedback4"></div>
+    </div>
+
+    <div class="question-card">
+      <h3>5️⃣ İlk teneffüste Ali Asaf arkadaşlarıyla ne yaptı?</h3>
+      <div class="answers">
+        <button class="answer" data-q="5">📖 Kitap okudu.</button>
+        <button class="answer" data-q="5" data-correct="true">⚽ Top oynadı, koştu ve sohbet etti.</button>
+        <button class="answer" data-q="5">🎨 Resim yaptı.</button>
+      </div>
+      <div class="question-feedback" id="feedback5"></div>
+    </div>
+  </div>
+
+  <button class="reset" id="quizReset">🔄 Soruları Baştan Başlat</button>
+</section>
+
+<section id="matching" class="panel">
+  <h2>🧩 Eşleştirme Oyunu</h2>
+  <p>Soldaki davranışı sağdaki doğru açıklamayla eşleştir.</p>
+  <div class="match-grid">
+    <div class="match-side">
+      <button class="match-btn" data-pair="1">🎒 Çantamı hazırlıyorum</button>
+      <button class="match-btn" data-pair="2">👂 Öğretmenimi dinliyorum</button>
+      <button class="match-btn" data-pair="3">⚽ Arkadaşımla oynuyorum</button>
+      <button class="match-btn" data-pair="4">🧹 Sınıfımı temiz tutuyorum</button>
+    </div>
+    <div class="match-side">
+      <button class="match-btn" data-pair="3">Arkadaşımı oyuna davet ederim.</button>
+      <button class="match-btn" data-pair="1">Kitaplarımı ve defterlerimi çantama koyarım.</button>
+      <button class="match-btn" data-pair="4">Çöpleri yere atmam.</button>
+      <button class="match-btn" data-pair="2">Ders sırasında dikkatlice dinlerim.</button>
+    </div>
+  </div>
+  <div id="matchMsg" class="match-msg">Hazırsan başlayalım! 🎒</div>
+  <button id="matchReset" class="reset">🔄 Tekrar Oyna</button>
+</section>
+
+<section id="certificate" class="panel">
+  <div class="certificate">
+    <div style="font-size:55px">🏆</div>
+    <h2>OKUL KAŞİFİ</h2>
+    <p><b>Ali Asaf'ın Okul Macerası</b></p>
+    <p>Hikâyeyi dinledin, oyunları oynadın ve eşleştirmeleri tamamladın.</p>
+    <p><b>Harika iş çıkardın! 🌟</b></p>
+    <button class="reset" onclick="window.print()">🖨️ Sertifikayı Yazdır</button>
+  </div>
+</section>
+</main>
 </div>
 
 <script>
-let points=0,score=0,answered=0,completedGames=new Set();
-const storyAudio=document.getElementById('storyAudio');
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));document.getElementById(id).classList.add('show');window.scrollTo({top:0,behavior:'smooth'})}
-function home(){stopStory();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));window.scrollTo({top:0,behavior:'smooth'})}
-function playStory(){storyAudio.play().catch(()=>alert('Ses dosyası bulunamadı.'))}function pauseStory(){storyAudio.pause()}function stopStory(){storyAudio.pause();storyAudio.currentTime=0}function setVolume(v){storyAudio.volume=Number(v)}
-storyAudio.addEventListener('timeupdate',()=>{if(storyAudio.duration)document.getElementById('audioProgress').style.width=(storyAudio.currentTime/storyAudio.duration*100)+'%'});storyAudio.addEventListener('ended',()=>document.getElementById('audioProgress').style.width='100%');
-function addPoint(n){points+=n;document.getElementById('points').textContent=points;updateUnlock()}
-function completeGame(id){if(completedGames.has(id))return;completedGames.add(id);updateProgress();addPoint(10)}
-function updateProgress(){let n=completedGames.size;document.getElementById('questBar').style.width=(n/4*100)+'%';document.getElementById('questText').textContent=n+' / 4 görev tamamlandı';}
-function gemGame(btn,n){let m=btn.closest('.game').querySelector('.msg');if(n===0){m.textContent='✨ Buldun! Sihir Taşı sende! +10 ⭐';completeGame('gem')}else m.textContent='🌟 Bu taş değil, tekrar dene!'}
-function pathGame(btn,ok){let m=btn.closest('.game').querySelector('.msg');m.textContent=ok?'🗺️ Doğru! Parlayan taşların yolunu buldun. +10 ⭐':'🌲 Bu yol değil, ipuçlarını tekrar incele!';if(ok)completeGame('path')}
-function objGame(btn,ok){let m=btn.closest('.game').querySelector('.msg');m.textContent=ok?'🗝️ Doğru! Gizli odanın anahtarını buldun. +10 ⭐':'😄 Bu değil! Gizli odayı açan nesneyi düşün.';if(ok)completeGame('key')}
-const cards=['🔮','🏰','🗝️','⭐','🔮','🏰','🗝️','⭐'];let first=null,lock=false,matches=0;
-function initMemory(){let g=document.getElementById('memoryGrid');g.innerHTML='';matches=0;first=null;lock=false;let shuffled=[...cards].sort(()=>Math.random()-.5);shuffled.forEach((v,i)=>{let b=document.createElement('button');b.className='memoryCard';b.textContent='?';b.dataset.v=v;b.dataset.i=i;b.onclick=()=>flipCard(b);g.appendChild(b)})}
-function flipCard(b){if(lock||b.classList.contains('open')||b.dataset.done)return;b.classList.add('open');b.textContent=b.dataset.v;if(!first){first=b;return}lock=true;let second=b;if(first.dataset.v===second.dataset.v){first.dataset.done=second.dataset.done='1';matches++;document.getElementById('memoryMsg').textContent='✨ Eşleşti!';first=null;lock=false;if(matches===4){document.getElementById('memoryMsg').textContent='🧠 Hafızan harika! +10 ⭐';completeGame('memory')}}else{setTimeout(()=>{first.classList.remove('open');second.classList.remove('open');first.textContent=second.textContent='?';first=null;lock=false},650)}}
-let spellSeq=[],spellInput=[];function startSpell(){const all=['🌙','⭐','🔮','🗝️','✨','🏰'];spellSeq=[...all].sort(()=>Math.random()-.5).slice(0,3);spellInput=[];document.getElementById('spellMsg').textContent='Sıra: '+spellSeq.join('  ');setTimeout(()=>document.getElementById('spellMsg').textContent='Şimdi aynı sırayı seç!',1100)}
-function spellPick(btn){if(!spellSeq.length)return;spellInput.push(btn.dataset.s);btn.classList.add('active');setTimeout(()=>btn.classList.remove('active'),180);let i=spellInput.length-1;if(spellInput[i]!==spellSeq[i]){document.getElementById('spellMsg').textContent='✨ Şifre şaştı! Yeni Şifre ile tekrar dene.';spellInput=[];return}if(spellInput.length===spellSeq.length){document.getElementById('spellMsg').textContent='🏰 Şato açıldı! +10 ⭐';completeGame('spell');spellSeq=[]}}
-function quiz(btn,ok){let q=btn.parentElement;if(q.dataset.done)return;q.dataset.done=1;answered++;if(ok){btn.classList.add('correct');score++;addPoint(10)}else btn.classList.add('wrong');document.getElementById('quizScore').textContent=score+' / 3';updateUnlock()}
-function updateUnlock(){let done=completedGames.size===4 && score>=3;let b=document.getElementById('certMenu');b.classList.toggle('locked',!done);document.getElementById('certStatus').textContent=done?'🎉 Açıldı!':'4 oyun + 3 doğru cevap';}
-function showCertificate(){if(completedGames.size<4||score<3){showScreen('games');alert('🏆 Sertifika için 4 sihirli görevi ve 3 macera sorusunu tamamla!');return}showScreen('certScreen')}
-function makeCert(e){e.preventDefault();document.getElementById('certName').textContent=document.getElementById('studentName').value.trim()}
-initMemory();updateProgress();updateUnlock();storyAudio.volume=.9;
+const tabs=[...document.querySelectorAll('.tab')];
+const panels=[...document.querySelectorAll('.panel')];
+
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  panels.forEach(x=>x.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(tab.dataset.target).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+function gameDone(btn){
+  btn.textContent='✅ Harika! Tekrar oynayabilirsin';
+  setTimeout(()=>btn.textContent='Başla',1400);
+}
+
+const items=[...document.querySelectorAll('.match-btn')];
+const msg=document.getElementById('matchMsg');
+const reset=document.getElementById('matchReset');
+let first=null,done=0;
+
+items.forEach(item=>item.addEventListener('click',()=>{
+  if(item.classList.contains('correct')) return;
+  if(!first){
+    first=item;
+    item.classList.add('selected');
+    msg.textContent='Şimdi diğer taraftan eşini seç! 👀';
+    return;
+  }
+  if(first===item) return;
+  const a=first,b=item;
+  if(a.dataset.pair===b.dataset.pair){
+    a.classList.remove('selected');a.classList.add('correct');
+    b.classList.add('correct');first=null;done++;
+    msg.textContent=done===4?'🎉 Harika! Tüm eşleştirmeleri doğru yaptın!':'✅ Doğru! Sıradaki eşleşmeye geç.';
+  }else{
+    a.classList.add('wrong');b.classList.add('wrong');
+    msg.textContent='🙂 Bu eşleşme olmadı. Tekrar deneyebilirsin!';
+    setTimeout(()=>{a.classList.remove('wrong','selected');b.classList.remove('wrong');first=null;},650);
+  }
+}));
+
+reset.addEventListener('click',()=>{
+  items.forEach(x=>x.classList.remove('correct','wrong','selected'));
+  first=null;done=0;msg.textContent='Hazırsan başlayalım! 🎒';
+});
 </script>
+
+<script>
+(function(){
+  const answers = [...document.querySelectorAll('.answer')];
+  const scoreBox = document.getElementById('scoreBox');
+  const resetBtn = document.getElementById('quizReset');
+  const solved = new Set();
+
+  answers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.q;
+      if (solved.has(q)) return;
+
+      if (btn.dataset.correct === 'true') {
+        btn.classList.remove('wrong');
+        btn.classList.add('correct');
+        document.getElementById('feedback' + q).textContent = '✅ Doğru cevap! Harikasın!';
+        solved.add(q);
+        scoreBox.textContent = '⭐ Doğru cevap: ' + solved.size + ' / 5';
+        if (solved.size === 5) {
+          scoreBox.textContent = '🎉 5 sorunun 5\'ini de doğru yaptın! Harika iş!';
+        }
+      } else {
+        btn.classList.add('wrong');
+        document.getElementById('feedback' + q).textContent =
+          '🙂 Bu cevap olmadı. Tekrar deneyebilirsin!';
+        setTimeout(() => btn.classList.remove('wrong'), 650);
+      }
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    solved.clear();
+    answers.forEach(btn => btn.classList.remove('correct','wrong'));
+    for (let i=1; i<=5; i++) {
+      document.getElementById('feedback' + i).textContent = '';
+    }
+    scoreBox.textContent = '⭐ Doğru cevap: 0 / 5';
+  });
+})();
+</script>
+
 </body>
 </html>
